@@ -1,0 +1,21 @@
+{
+  "dmint": {
+    "v": "1",
+    "mint_height": 0,
+    "merkle": "66acebd28c7c2d50170affb81fe4eb3e9110fb205cf64dc57cabef1bbbc57159",
+    "immutable": true,
+    "items": 1001,
+    "rules": [
+      {
+        "p": ".*",
+        "o": {
+          "5120fa96e10edd8d2e7fc7a135249acbcc2319ae6035d63a8603978ed5864fce2546": {
+            "v": 50000,
+            "id": "360533d31e6f3c535acf7a70686ab42cf477b3f7ceaf12ab1d30be218b1726a9i0"
+          }
+        },
+        "bitworkc": "101010"
+      }
+    ]
+  }
+}

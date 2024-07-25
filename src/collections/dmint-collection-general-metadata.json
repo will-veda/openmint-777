@@ -1,0 +1,14 @@
+{
+  "name": "Dark Forest",
+  "desc": "Dark Forest by Modordinal",
+  "image": "atom:btc:dat:286f4838b2da8c42ab805a6ea84b81d90a8496ba0a8b50bd271f6378c9ce090ci0/logo.png",
+  "legal": {
+    "terms": "...",
+    "license": "CC"
+  },
+  "links": {
+    "x": {
+      "v": "https://twitter.com/modordinal"
+    }
+  }
+}
