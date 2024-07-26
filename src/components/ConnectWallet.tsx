@@ -2,9 +2,6 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { fetchAtomicalsData } from "@/utils/fetchAtomicalData";
-import { fetchAdditionalData } from "@/utils/imageUtils";
-import { useState, useEffect } from "react";
 
 const ConnectButton = (props: any) => {
   return <Button {...props} />;
@@ -14,9 +11,6 @@ const ConnectWallet = () => {
   const [connectedAddress, setConnectedAddress] = React.useState<string | null>(
     null
   );
-
-  const [atomicalImageData, setAtomicalImageData] = useState<any>(null);
-  const [additionalData, setAdditionalData] = useState<any>(null);
 
   const handleConnect = async () => {
     // @ts-ignore
@@ -28,11 +22,6 @@ const ConnectWallet = () => {
         const connectedAddress = accounts[0];
         setConnectedAddress(connectedAddress);
         console.log("connect success", connectedAddress);
-        const data = await fetchAtomicalsData('0420061a2d324d59df226281a33e973cca4e3a652ef2f49c360e842e4557f886i0');
-        const image = await fetchAdditionalData(data);
-
-        console.log("Atomicals data: ", data);
-
       } catch (e) {
         console.log("connect failed");
         setConnectedAddress(null);
