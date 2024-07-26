@@ -6,6 +6,7 @@ import Image from "next/image";
 import AtomicalCard from "@/components/MetaData";
 import { fetchAtomicalsData } from "@/utils/fetchAtomicalData";
 import { fetchAdditionalData } from "@/utils/imageUtils";
+import Dashobard from '@/app/home/page';
 
 const ConnectButton = (props: any) => {
   return <Button {...props} />;
@@ -61,6 +62,7 @@ export default function Home() {
         <span className="text-secondary-foreground">MINT</span>
       </h1>
 
+      <Dashboard />
       {atomicalImageData && <AtomicalCard atomicalData={atomicalImageData} additionalData={additionalData} />}
     </div>
   );
