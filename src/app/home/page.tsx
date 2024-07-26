@@ -1,39 +1,97 @@
-'use client';
+"use client";
 
-import NFTCard, { INFTModal } from '@/components/NFTCard';
+import NFTCard from "@/components/NFTCard";
+import { useEffect, useState } from "react";
+import NFTModal1 from "@/jsons/1.json";
+import NFTModal2 from "@/jsons/2.json";
 
-import NFTModal1 from '@/jsons/1.json';
-import NFTModal2 from '@/jsons/2.json';
-import NFTModal3 from '@/jsons/3.json';
-import NFTModal4 from '@/jsons/4.json';
-import NFTModal5 from '@/jsons/5.json';
-import NFTModal6 from '@/jsons/6.json';
-import NFTModal7 from '@/jsons/7.json';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { getGeneratedImages } from "@/utils/imageGenerator";
 
 const page = () => {
-    return (
-        <div className="w-full">
-            <div className='flex justify-center'>
-                <div className='body grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-10 px-10'>
-                    <NFTCard data={NFTModal1.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal2.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal3.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal4.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal5.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal5.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal6.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal7.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal2.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal3.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal4.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal5.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal5.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal6.data} mainHash={''} targetVector={''} targethash={''} />
-                    <NFTCard data={NFTModal7.data} mainHash={''} targetVector={''} targethash={''} />
-                </div>
-            </div>
-        </div >
-    );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [imageList, setImageList] = useState<any[]>([]);
+  const totalPages = 3;
+
+  useEffect(() => {
+    async function fetchImageList() {
+      const readCount = 30;
+      try {
+        let imageList = [];
+        let imageBianary = await getGeneratedImages();
+        // const imageArr = Object.values(files);
+        console.log(imageBianary)
+        if (imageBianary.length > 0) {
+            // @ts-ignore
+          for (let imageInfo of imageBianary) {
+            console.log(imageInfo)
+            // setImageList(imageInfo);
+            // imageList.push(`data:image/png;base64,${imageInfo}`);
+
+            // if (imageList.length == readCount) break;
+          }
+        }
+        setImageList(imageList);
+      } catch (error) {
+        console.error("Error fetching preprocessed data:", error);
+      }
+    }
+    fetchImageList();
+  }, []);
+
+
+  const handlePageChange = (pageNumber: any) => {
+    setCurrentPage(pageNumber);
+  };
+
+  return (
+    <>
+      <div>
+        <NFTCard
+          data={[NFTModal1, NFTModal2][currentPage - 1].data}
+          mainHash={""}
+          targetVector={""}
+          targethash={""}
+        />
+        <Pagination total={totalPages}>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                onClick={() => handlePageChange(currentPage - 1)}
+                //@ts-ignore
+                disabled={currentPage === 1}
+              />
+            </PaginationItem>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <PaginationItem key={i}>
+                <PaginationLink
+                  onClick={() => handlePageChange(i + 1)}
+                  className={currentPage === i + 1 ? "active" : ""}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext
+                onClick={() => handlePageChange(currentPage + 1)}
+                //@ts-ignore
+                disabled={currentPage === totalPages}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
+    </>
+  );
 };
 
 export default page;
