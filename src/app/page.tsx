@@ -6,6 +6,7 @@ import Image from "next/image";
 import AtomicalCard from "@/components/MetaData";
 import { fetchAtomicalsData } from "@/utils/fetchAtomicalData";
 import { fetchAdditionalData } from "@/utils/imageUtils";
+import Dashboard from "./home/dashboard";
 
 const ConnectButton = (props: any) => {
   return <Button {...props} />;
@@ -19,8 +20,19 @@ export default function Home() {
   const [additionalData, setAdditionalData] = useState<any>(null);
 
   useEffect(() => {
-    handleConnectWallet();
+    // Fetch Atomicals data
+    displayCard()
   }, []);
+
+  const displayCard = async () => {
+    const data = await fetchAtomicalsData('6341fdaf0ef212ed3d4344a73df44389950442d753dc851b423ed9f541fd9a04i0');
+    const image = await fetchAdditionalData(data);
+
+    console.log("Atomicals data: ", data);
+
+    setAtomicalImageData(data);
+    setAdditionalData(image);
+  };
 
   const handleConnectWallet = async () => {
     if (typeof window.wizz !== "undefined") {
@@ -31,14 +43,7 @@ export default function Home() {
         setConnectedAddress(connectedAddress);
         console.log("connect success", connectedAddress);
 
-        // Fetch Atomicals data
-        const data = await fetchAtomicalsData('0420061a2d324d59df226281a33e973cca4e3a652ef2f49c360e842e4557f886i0');
-        const image = await fetchAdditionalData(data);
 
-        console.log("Atomicals data: ", data);
-
-        setAtomicalImageData(data);
-        setAdditionalData(image);
       } catch (e) {
         console.log("connect failed");
         setConnectedAddress(null);
@@ -50,15 +55,18 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start h-full gap-8 pt-20">
+    <div className="">
+      <div className="flex flex-col items-center justify-start h-full gap-8 px-4 md:px-12">
 
+        {/*  <h1 className="text-4xl text-primary font-bold">
+          OPEN
+          <span className="text-secondary-foreground">MINT</span>
+        </h1> */}
 
-      <h1 className="text-4xl text-primary font-bold">
-        OPEN
-        <span className="text-secondary-foreground">MINT</span>
-      </h1>
+        {atomicalImageData && <AtomicalCard atomicalData={atomicalImageData} additionalData={additionalData} />}
+      </div>
 
-      {atomicalImageData && <AtomicalCard atomicalData={atomicalImageData} additionalData={additionalData} />}
+      <Dashboard />
     </div>
   );
 }

@@ -18,52 +18,63 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
 
 
     return (
-        <Card className="w-11/12 mx-auto mt-8">
-            <CardHeader>
-                <CardTitle className="text-2xl font-bold">{atomicalData.name}</CardTitle>
+        <Card className="w-full lg:w-2/3 mx-auto border-0 shadow-none">
+            <CardHeader className="pb-2">
+                <CardTitle className="text-2xl font-bold text-center md:text-start">{name}</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="grid w-full items-center gap-4">
-                    <div className="flex flex-col space-y-1.5">
+                    <div className="flex flex-col md:flex-row  space-y-1.5">
                         {/* Display image */}
-                        <Image className="w-44 md:w-72" src={imageUrl} width={512} height={512} alt="Atomical Image" />
-                    </div>
+                        <div className="flex justify-center md:justify-start">
+                            <Image className="w-44 md:w-72 rounded-xl" src={imageUrl} width={512} height={512} alt="Atomical Image" />
+                        </div>
 
-                    <div className="flex flex-col space-y-1.5">
-                        {/* Display description */}
-                        <CardDescription className="text-primary">
-                            {desc}
+                        <CardDescription className="text-primary py-2 md:p-4 md:py-0 overflow-hidden break-word flex flex-col justify-between">
+                            <p className="text-lg">{desc}</p>
+                            <p className="text-secondary">{dmint.items} items</p>
+
+
                         </CardDescription>
                     </div>
 
                     <div className="flex flex-col space-y-1.5">
-                        {/* Display additional details */}
+
+                        {links &&
+                            <div className="flex flex-col space-y-1.5">
+                                {/* Display links dynamically */}
+                                {Object.keys(links).map((key) => (
+                                    <a
+                                        key={key}
+                                        href={links[key].v}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-primary"
+                                    >
+                                        {links[key].v}
+                                    </a>
+
+                                ))}
+                            </div>
+                        }
+
                         <div>
-                            <strong>Items:</strong> {dmint.items}
+                            <span className="font-bold">Mint Height Block:</span> {dmint.mint_height === 0 ? 'OPEN' : dmint.mint_height}
                         </div>
-                        <div>
-                            <strong>Mint Height:</strong> {dmint.mint_height}
-                        </div>
-                        <div>
-                            <strong>Merkle:</strong> {dmint.merkle}
-                        </div>
-                        <div>
-                            <strong>License:</strong> {legal.license}
-                        </div>
-                        <div>
-                            <strong>Terms:</strong> {legal.terms}
-                        </div>
+
+                        {
+                            legal.terms && (
+                                <div>
+                                    <span className="font-bold">License & Terms:</span> {legal.license} - {legal.terms}
+                                </div>
+                            )
+
+                        }
+
+
                     </div>
 
-                    <div className="flex flex-col space-y-1.5">
-                        {/* Display links */}
-                        <a href={links.website.v} target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline">
-                            Website
-                        </a>
-                        <a href={links.x.v} target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline">
-                            Twitter
-                        </a>
-                    </div>
+
                 </div>
             </CardContent>
             <CardFooter className="flex justify-between">

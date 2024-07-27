@@ -73,3 +73,18 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.feed-cols,
+.new-feed-cols {
+  grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
+}
+
+.feed-cols,
+.new-feed-cols,
+.picker-cols {
+  display: grid;
+  justify-content: stretch;
+  width: 100%;
+  justify-items: stretch;
+}

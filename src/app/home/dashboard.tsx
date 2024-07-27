@@ -23,13 +23,13 @@ const Dashboard = () => {
   const [startPage, setStartPage] = useState(1);
   const [endPage, setEndPage] = useState(5);
 
-  const pageCount = 12;
+  const pageCount = 20;
   const maxVisiblePages = 5;
 
   useEffect(() => {
     async function fetchImageList() {
       try {
-        let {totalCount, nftList} = await getGeneratedImages(currentPage, pageCount);
+        let { totalCount, nftList } = await getGeneratedImages(currentPage, pageCount);
         const totalPage = Math.ceil(totalCount / pageCount);
 
         setImageList(nftList);
@@ -41,7 +41,7 @@ const Dashboard = () => {
           let end = currentPage + halfVisiblePages;
           console.log(start)
           console.log(end)
-  
+
           if (start < 1) {
             start = 1;
             end = Math.min(maxVisiblePages, totalPage);
@@ -51,7 +51,7 @@ const Dashboard = () => {
           }
           console.log(start)
           console.log(end)
-  
+
           setStartPage(start);
           setEndPage(end);
         }
@@ -70,7 +70,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div>
+      <div className="w-full">
         <NFTCard data={imageList} />
         <Pagination total={totalPages}>
           <PaginationContent>
