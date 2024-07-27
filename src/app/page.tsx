@@ -6,7 +6,6 @@ import Image from "next/image";
 import AtomicalCard from "@/components/MetaData";
 import { fetchAtomicalsData } from "@/utils/fetchAtomicalData";
 import { fetchAdditionalData } from "@/utils/imageUtils";
-import Dashobard from '@/app/home/page';
 
 const ConnectButton = (props: any) => {
   return <Button {...props} />;
@@ -18,6 +17,10 @@ export default function Home() {
   const [connectedAddress, setConnectedAddress] = useState<string | null>(null);
   const [atomicalImageData, setAtomicalImageData] = useState<any>(null);
   const [additionalData, setAdditionalData] = useState<any>(null);
+
+  useEffect(() => {
+    handleConnectWallet();
+  }, []);
 
   const handleConnectWallet = async () => {
     if (typeof window.wizz !== "undefined") {
@@ -48,21 +51,13 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-start h-full gap-8 pt-20">
-      <div className="absolute top-4 right-4">
-        <LightMode />
-        <ConnectButton className="mx-4" onClick={handleConnectWallet}>
-          {connectedAddress
-            ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
-            : "Connect"}
-        </ConnectButton>
-      </div>
+
 
       <h1 className="text-4xl text-primary font-bold">
         OPEN
         <span className="text-secondary-foreground">MINT</span>
       </h1>
 
-      <Dashboard />
       {atomicalImageData && <AtomicalCard atomicalData={atomicalImageData} additionalData={additionalData} />}
     </div>
   );

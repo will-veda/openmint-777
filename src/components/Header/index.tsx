@@ -5,19 +5,13 @@ import { LightMode } from "../LightMode";
 import { menuItems } from "@/contants/menuItems";
 import { Logo } from "@/components/ui/logo";
 const Header = () => {
-  const handleClickMenu = (item: string) => {};
+  const handleClickMenu = (item: string) => { };
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between px-3 md:px-20 py-3">
-        <div className="flex flex-col items-center justify-center">
+      <div className="flex items-center justify-between px-2 md:px-4 py-3">
+        <div className="flex flex-row items-center justify-center gap-4 w-12">
           <Logo />
-          <h3 className="text-xl text-primary font-bold">
-            OPEN
-            <span className="text-secondary-foreground dark:text-white ">
-              MINT
-            </span>
-          </h3>
         </div>
 
         <div className="flex items-center gap-2">

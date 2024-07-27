@@ -26,12 +26,12 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                 <div className="grid w-full items-center gap-4">
                     <div className="flex flex-col space-y-1.5">
                         {/* Display image */}
-                        <Image src={imageUrl} width={288} height={288} alt="Atomical Image" />
+                        <Image className="w-44 md:w-72" src={imageUrl} width={512} height={512} alt="Atomical Image" />
                     </div>
 
                     <div className="flex flex-col space-y-1.5">
                         {/* Display description */}
-                        <CardDescription className="text-gray-700">
+                        <CardDescription className="text-primary">
                             {desc}
                         </CardDescription>
                     </div>
@@ -57,10 +57,10 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
 
                     <div className="flex flex-col space-y-1.5">
                         {/* Display links */}
-                        <a href={links.website.v} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                        <a href={links.website.v} target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline">
                             Website
                         </a>
-                        <a href={links.x.v} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                        <a href={links.x.v} target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline">
                             Twitter
                         </a>
                     </div>

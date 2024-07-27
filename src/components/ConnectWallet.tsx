@@ -33,7 +33,7 @@ const ConnectWallet = () => {
   };
 
   return (
-    <ConnectButton className="mx-4" onClick={handleConnect}>
+    <ConnectButton className="" onClick={handleConnect}>
       {connectedAddress
         ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
         : "Connect"}
