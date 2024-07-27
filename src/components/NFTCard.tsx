@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import Image from "next/image";
-import { Download, Stamp } from "lucide-react";
+import { Download, Pickaxe, Stamp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface INFTModalProof {
@@ -18,8 +18,8 @@ export interface INFTModal {
       i: boolean;
       proof: INFTModalProof[];
     };
-    "image.webp": {
-      $b: string;
+    [key: string]: {
+      $b?: string;
     };
   };
   targetVector: string;
@@ -56,18 +56,22 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
     URL.revokeObjectURL(url);
   };
 
+  const getImageBase64 = (data: { [key: string]: { $b?: string } }) => {
+    for (const key in data) {
+      if (data[key].$b) {
+        return Buffer.from(data[key].$b, "hex").toString("base64");
+      }
+    }
+    return null;
+  };
+
   return (
     <div className="mt-4 p-4 grid new-feed-cols justify-stretch justify-items-stretch gap-4 w-full">
       {data && data.map((nftModal, index) => (
         <div key={index} className="w-full flex flex-col items-center border-2">
-          {nftModal.data["image.webp"]?.$b ? (
+          {getImageBase64(nftModal.data) ? (
             <Image
-              src={`data:image/webp;base64, ${Buffer.from(
-                nftModal.data["image.webp"].$b !== undefined
-                  ? nftModal.data["image.webp"].$b
-                  : "",
-                "hex"
-              ).toString("base64")}`}
+              src={`data:image/png;base64, ${getImageBase64(nftModal.data)}`}
               width={144}
               height={144}
               className="w-34 h-auto rounded-lg"
@@ -91,7 +95,7 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
               className="h-8 w-full border-b-0 border-r-0"
               onClick={() => handleMint(nftModal)}
             >
-              <Stamp className="flex justify-center items-center h-4 w-6" />
+              <Pickaxe className="flex justify-center items-center h-4 w-6" />
             </Button>
           </div>
         </div>

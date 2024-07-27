@@ -26,7 +26,7 @@ export default function Home() {
   }, []);
 
   const displayCard = async () => {
-    const data = await fetchAtomicalsData('b6cf7f795848c689f39b05015f02b6ddebb30815f37ed75027f18de8de1851e8i0');
+    const data = await fetchAtomicalsData('52537011ff972e8bb431c139a0a5359731dd802b8de5752bbecadbf015884456i0');
     const image = await fetchAdditionalData(data);
 
     console.log("Atomicals data: ", data);

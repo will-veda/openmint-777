@@ -37,7 +37,7 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
         <Card className="rounded-none mx-auto border-0 shadow-none">
             <CardHeader className="pb-2">
                 <CardTitle className="text-2xl font-bold text-center md:text-start">{name}</CardTitle>
-                <p className="text-muted-foreground">{dmint.items} items</p>
+                <p className="text-muted-foreground text-sm text-center md:text-start">{dmint.items} items</p>
 
             </CardHeader>
             <CardContent>
@@ -56,6 +56,9 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                                             {desc}
                                         </DialogDescription>
                                     </DialogHeader>
+                                    <Button variant="ghost" size='sm' className="w-full" onClick={handleButtonClick}>
+                                        verify on-chain
+                                    </Button>
                                 </DialogContent>
                             </Dialog>
 
@@ -65,7 +68,7 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                     <div className="flex flex-col gap-2">
 
                         {links &&
-                            <div className="flex flex-col space-y-1.5">
+                            <div className="flex flex-col-reverse gap-2">
                                 {/* Display links dynamically */}
                                 {Object.keys(links).map((key) => (
                                     <a
@@ -116,11 +119,6 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
 
                 </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-                <Button variant="link" size='sm' className="w-full" onClick={handleButtonClick}>
-                    Open Atomical Data
-                </Button>
-            </CardFooter>
         </Card>
     );
 };

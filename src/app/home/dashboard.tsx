@@ -24,7 +24,7 @@ const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
   const [startPage, setStartPage] = useState(1);
   const [endPage, setEndPage] = useState(5);
 
-  const pageCount = 20;
+  const pageCount = 50;
   const maxVisiblePages = 5;
 
   useEffect(() => {
