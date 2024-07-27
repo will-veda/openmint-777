@@ -15,10 +15,10 @@ const Footer = () => {
                     </h1>
                 </div>
                 <div className="flex gap-4">
-                    <a href="https://github.com/lamachina/openmint" target="_blank">
+                    <a href="https://github.com/lamachina/openmint" target="_blank" className="hover:text-primary">
                         <FolderGit />
                     </a>
-                    <a href="https://twitter.com/LaMachina777" target="_blank">
+                    <a href="https://twitter.com/LaMachina777" target="_blank" className="hover:text-primary">
                         <Blend />
                     </a>
 
