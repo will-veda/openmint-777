@@ -47,7 +47,7 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                         <div className="flex justify-center md:justify-start">
                             <Dialog>
                                 <DialogTrigger>
-                                    <Image className="w-44 md:w-72 rounded-xl hover:brightness-105" src={imageUrl} width={512} height={512} alt="Atomical Image" />
+                                    <Image className="w-44 md:w-72 rounded-xl hover:brightness-105 border-4 border-popover-foreground" src={imageUrl} width={512} height={512} alt="Atomical Image" />
                                 </DialogTrigger>
                                 <DialogContent className="max-w-[90%] md:max-w-[70%] rounded-xl">
                                     <DialogHeader>

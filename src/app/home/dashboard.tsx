@@ -15,6 +15,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { getGeneratedImages } from "@/utils/imageGenerator";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
   const [imageList, setImageList] = useState<any[]>([]);
@@ -69,9 +70,13 @@ const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
     setCurrentPage(newPage);
   };
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  /* const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const page = parseInt(event.target.value, 10);
     handlePageChange(page);
+  }; */
+
+  const handleSelectChange = (page: any) => {
+    setCurrentPage(Number(page)); // Ensure the page value is converted to a number
   };
   /* 
     const handleDownload = () => {
@@ -104,8 +109,9 @@ const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
                 disabled={currentPage === 1}
               />
             </PaginationItem>
+
             {Array.from({ length: endPage - startPage + 1 }, (_, i) => i + startPage).map((page) => (
-              <PaginationItem key={page}>
+              <PaginationItem key={page} className="hidden md:flex">
                 <PaginationLink
                   onClick={() => handlePageChange(page)}
                   className={currentPage === page ? "active" : ""}
@@ -114,18 +120,27 @@ const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
                 </PaginationLink>
               </PaginationItem>
             ))}
+
             <PaginationItem>
               <PaginationNext
                 onClick={() => handlePageChange(currentPage + 1)}
                 //@ts-ignore
                 disabled={currentPage === totalPages}
               />
-              <select id="page-select" value={currentPage} onChange={handleSelectChange}>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <option key={page} value={page}>{page}</option>
-                ))}
-              </select>
             </PaginationItem>
+
+            <Select onValueChange={handleSelectChange} value={String(currentPage)}>
+              <SelectTrigger className="">
+                <SelectValue placeholder="Select Page" />
+              </SelectTrigger>
+              <SelectContent>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <SelectItem key={page} value={String(page)}>
+                    {page}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </PaginationContent>
         </Pagination>
       </div>

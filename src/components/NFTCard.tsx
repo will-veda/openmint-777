@@ -27,6 +27,7 @@ export interface INFTModal {
 }
 
 const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] }) => {
+
   const handleMint = async (dmitem: Record<string, any>) => {
     console.log("dmint :", dmitem);
 
@@ -40,6 +41,19 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
     } catch (error) {
       console.error('Mint error:', error);
     }
+  };
+
+  const handleDownload = (nftModal: INFTModal) => {
+    const content = nftModal;
+    const jsonBlob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(jsonBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `item-${nftModal.data.args.request_dmitem}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -68,13 +82,14 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
             <Button
               variant={'outline'}
               className="h-8 w-full border-b-0 border-l-0"
-              onClick={() => handleMint(nftModal)}
+              onClick={() => handleDownload(nftModal)}
             >
               <Download className="flex justify-center items-center h-4 w-6" />
             </Button>
             <Button
               variant={'outline'}
               className="h-8 w-full border-b-0 border-r-0"
+              onClick={() => handleMint(nftModal)}
             >
               <Stamp className="flex justify-center items-center h-4 w-6" />
             </Button>
