@@ -2,13 +2,10 @@
 
 import NFTCard from "@/components/NFTCard";
 import { useEffect, useState } from "react";
-import NFTModal1 from "@/jsons/1.json";
-import NFTModal2 from "@/jsons/2.json";
 
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -103,6 +100,7 @@ const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
 
           <>
             <NFTCard atomicalData={atomicalData} data={imageList} />
+            {/* @ts-ignore */}
             <Pagination total={totalPages}>
               <PaginationContent>
                 <PaginationItem>
