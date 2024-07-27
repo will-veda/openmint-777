@@ -52,7 +52,7 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                                 <DialogTrigger>
                                     <Image className="w-44 md:w-72 rounded-xl hover:brightness-105 border-4 border-popover-foreground" src={imageUrl} width={512} height={512} alt="Atomical Image" />
                                 </DialogTrigger>
-                                <DialogContent className="max-w-[90%] md:max-w-[70%] rounded-xl">
+                                <DialogContent className="max-w-[90%] md:max-w-fit rounded-xl">
                                     <DialogHeader>
                                         <DialogTitle>{name}</DialogTitle>
                                         <DialogDescription>
@@ -103,7 +103,7 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                                         <DialogTrigger className="hover:underline">
                                             License & Terms
                                         </DialogTrigger>
-                                        <DialogContent className="max-w-[90%] md:max-w-[70%] rounded-xl">
+                                        <DialogContent className="max-w-[90%] md:max-w-fit rounded-xl">
                                             <DialogHeader>
                                                 <DialogTitle> {legal.license}</DialogTitle>
                                                 <DialogDescription>

@@ -81,7 +81,7 @@ body {
 .new-feed-cols,
 .picker-cols {
   display: grid;
-  justify-content: stretch;
+  justify-content: center;
   width: 100%;
-  justify-items: stretch;
+  justify-items: center;
 }

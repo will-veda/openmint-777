@@ -72,17 +72,23 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
   };
 
   return (
-    <div className="mt-4 p-4 grid new-feed-cols justify-stretch justify-items-stretch gap-4 w-full">
+    <div className="mt-4 p-4 grid new-feed-cols justify-center justify-items-center gap-4 w-full">
       {data && data.map((nftModal, index) => (
-        <div key={index} className="w-full flex flex-col items-center border-2">
+        <div key={index} className="w-fit flex flex-col items-center border-2">
           {getImageBase64(nftModal.data) ? (
-            <Image
-              src={`data:image/png;base64, ${getImageBase64(nftModal.data)}`}
-              width={144}
-              height={144}
-              className="w-34 h-auto rounded-lg"
-              alt="NFT"
-            />
+            <div className="relative group w-34 h-auto rounded-lg overflow-hidden">
+              <Image
+                src={`data:image/png;base64, ${getImageBase64(nftModal.data)}`}
+                width={144}
+                height={144}
+                className="w-full h-full object-cover"
+                alt="NFT"
+              />
+              <div className="absolute inset-0 bg-white dark:bg-white bg-opacity-80 dark:bg-opacity-80 opacity-0 group-hover:opacity-100 flex items-center justify-center">
+                <span className="text-xl text-black dark:text-secondary text-balance font-bold">{nftModal.data.args.request_dmitem}</span>
+              </div>
+            </div>
+
           ) : (
             <div className="w-full h-full bg-gray-300 rounded-lg flex justify-center items-center">
               <Skeleton className="w-72 h-72" />
