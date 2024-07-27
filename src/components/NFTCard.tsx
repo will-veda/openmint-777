@@ -3,6 +3,7 @@ import * as React from "react";
 import Image from "next/image";
 import { Download, Pickaxe, Stamp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "./ui/skeleton";
 
 interface INFTModalProof {
   p: boolean;
@@ -12,6 +13,7 @@ interface INFTModalProof {
 export interface INFTModal {
   mainHash: string;
   data: {
+    //@ts-ignore
     args: {
       request_dmitem: string;
       main: string;
@@ -29,19 +31,23 @@ export interface INFTModal {
 const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] }) => {
 
   const handleMint = async (dmitem: Record<string, any>) => {
-    console.log("dmint :", dmitem);
 
-    try {
-      const response = await window.wizz.requestMint({
-        type: 'mint_dmitem',
-        dmitem,
-        atomicalId: atomicalData.atomical_id
-      });
-      console.log('Mint response:', response);
-    } catch (error) {
-      console.error('Mint error:', error);
-    }
-  };
+    console.log("dmint :", dmitem);
+    // @ts-ignore
+    if (typeof window?.wizz !== "undefined") {
+      try {
+        // @ts-ignore
+        const response = await window?.wizz.requestMint({
+          type: 'mint_dmitem',
+          dmitem,
+          atomicalId: atomicalData.atomical_id
+        });
+        console.log('Mint response:', response);
+      } catch (error) {
+        console.error('Mint error:', error);
+      }
+    };
+  }
 
   const handleDownload = (nftModal: INFTModal) => {
     const content = nftModal;
@@ -79,7 +85,7 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
             />
           ) : (
             <div className="w-full h-full bg-gray-300 rounded-lg flex justify-center items-center">
-              <p>Loading...</p>
+              <Skeleton className="w-72 h-72" />
             </div>
           )}
           <div className="flex flex-row justify-center items-center w-full">

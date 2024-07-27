@@ -97,54 +97,56 @@ const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
     }; */
 
   return (
-    <>
-      <div className="w-full pb-10">
-        <NFTCard atomicalData={atomicalData} data={imageList} />
-        <Pagination total={totalPages}>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious
-                onClick={() => handlePageChange(currentPage - 1)}
-                //@ts-ignore
-                disabled={currentPage === 1}
-              />
-            </PaginationItem>
+    <div className="w-full pb-10">
+      {
+        imageList[0] && (
 
-            {Array.from({ length: endPage - startPage + 1 }, (_, i) => i + startPage).map((page) => (
-              <PaginationItem key={page} className="hidden md:flex">
-                <PaginationLink
-                  onClick={() => handlePageChange(page)}
-                  className={currentPage === page ? "active" : ""}
-                >
-                  {page}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
+          <>
+            <NFTCard atomicalData={atomicalData} data={imageList} />
+            <Pagination total={totalPages}>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    //@ts-ignore
+                    disabled={currentPage === 1} />
+                </PaginationItem>
 
-            <PaginationItem>
-              <PaginationNext
-                onClick={() => handlePageChange(currentPage + 1)}
-                //@ts-ignore
-                disabled={currentPage === totalPages}
-              />
-            </PaginationItem>
-
-            <Select onValueChange={handleSelectChange} value={String(currentPage)}>
-              <SelectTrigger className="">
-                <SelectValue placeholder="Select Page" />
-              </SelectTrigger>
-              <SelectContent>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <SelectItem key={page} value={String(page)}>
-                    {page}
-                  </SelectItem>
+                {Array.from({ length: endPage - startPage + 1 }, (_, i) => i + startPage).map((page) => (
+                  <PaginationItem key={page} className="hidden md:flex">
+                    <PaginationLink
+                      onClick={() => handlePageChange(page)}
+                      className={currentPage === page ? "active" : ""}
+                    >
+                      {page}
+                    </PaginationLink>
+                  </PaginationItem>
                 ))}
-              </SelectContent>
-            </Select>
-          </PaginationContent>
-        </Pagination>
-      </div>
-    </>
+
+                <PaginationItem>
+                  <PaginationNext
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    //@ts-ignore
+                    disabled={currentPage === totalPages} />
+                </PaginationItem>
+
+                <Select onValueChange={handleSelectChange} value={String(currentPage)}>
+                  <SelectTrigger className="">
+                    <SelectValue placeholder="Select Page" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                      <SelectItem key={page} value={String(page)}>
+                        {page}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </PaginationContent>
+            </Pagination></>
+        )}
+
+    </div>
   );
 };
 
