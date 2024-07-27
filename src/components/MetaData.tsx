@@ -20,6 +20,8 @@ import {
 import Image from "next/image";
 import { hexToBase64 } from "@/utils/imageUtils";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ShieldCheck } from "lucide-react";
+import { WavyBackground } from "./ui/wavy-bg";
 
 const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, additionalData: any }) => {
     // Fallback for additionalData in case it's null or undefined
@@ -34,14 +36,15 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
 
 
     return (
-        <Card className="rounded-none mx-auto border-0 shadow-none">
+        <Card className="rounded-none mx-auto border-0 shadow-none ">
+
             <CardHeader className="pb-2">
                 <CardTitle className="text-2xl font-bold text-center md:text-start">{name}</CardTitle>
                 <p className="text-muted-foreground text-sm text-center md:text-start">{dmint.items} items</p>
 
             </CardHeader>
             <CardContent>
-                <div className="grid w-full items-center gap-4">
+                <div className="flex flex-col md:flex-row w-full items-center gap-4">
                     <div className="flex flex-col md:flex-row  space-y-1.5">
                         {/* Display image */}
                         <div className="flex justify-center md:justify-start">
@@ -57,7 +60,7 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                                         </DialogDescription>
                                     </DialogHeader>
                                     <Button variant="ghost" size='sm' className="w-full" onClick={handleButtonClick}>
-                                        verify on-chain
+                                        verify on-chain <ShieldCheck className="mx-2" />
                                     </Button>
                                 </DialogContent>
                             </Dialog>
@@ -119,6 +122,7 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
 
                 </div>
             </CardContent>
+
         </Card>
     );
 };

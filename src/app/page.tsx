@@ -8,6 +8,7 @@ import { fetchAtomicalsData } from "@/utils/fetchAtomicalData";
 import { fetchAdditionalData } from "@/utils/imageUtils";
 import Dashboard from "./home/dashboard";
 import { Skeleton } from "@/components/ui/skeleton";
+import { WavyBackground } from "@/components/ui/wavy-bg";
 
 const ConnectButton = (props: any) => {
   return <Button {...props} />;
@@ -26,7 +27,7 @@ export default function Home() {
   }, []);
 
   const displayCard = async () => {
-    const data = await fetchAtomicalsData('52537011ff972e8bb431c139a0a5359731dd802b8de5752bbecadbf015884456i0');
+    const data = await fetchAtomicalsData('b6cf7f795848c689f39b05015f02b6ddebb30815f37ed75027f18de8de1851e8i0');
     const image = await fetchAdditionalData(data);
 
     console.log("Atomicals data: ", data);
@@ -57,15 +58,18 @@ export default function Home() {
 
   return (
     <div className="">
-      <div className="flex flex-col items-center justify-start h-full gap-8 px-4 md:px-12 bg-card">
 
+
+      <div className="flex flex-col items-center justify-center h-[90vh] gap-8 px-4 md:px-12 bg-card">
         {/*  <h1 className="text-4xl text-primary font-bold">
           OPEN
           <span className="text-secondary-foreground">MINT</span>
         </h1> */}
 
+
         {atomicalImageData ? <AtomicalCard atomicalData={atomicalImageData} additionalData={additionalData} />
           : <Skeleton className="h-[90vh] w-full" />}
+
       </div>
 
       <Dashboard atomicalData={atomicalImageData} />
