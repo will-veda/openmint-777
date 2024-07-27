@@ -3,7 +3,6 @@ import Image from "next/image";
 import ConnectWallet from "../ConnectWallet";
 import { LightMode } from "../LightMode";
 import { menuItems } from "@/contants/menuItems";
-import { Logo } from "@/components/ui/logo";
 const Header = () => {
   const handleClickMenu = (item: string) => { };
 

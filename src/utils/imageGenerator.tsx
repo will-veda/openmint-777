@@ -3,37 +3,34 @@
 import path from "path";
 import fs from "fs";
 
-async function getGeneratedImages(): Promise<{ [fileName: string]: any }> {
+async function getGeneratedImages(pageNumber: number, pageCount: number): Promise<{ [fileName: string]: any }> {
   const dirPath = path.join(process.cwd(), "src/collections");
-  let jsonData = readJSONFiles(dirPath);
-  return jsonData;
+  return readJSONFiles(dirPath, pageNumber, pageCount);
 }
 
 // Function to read all JSON files in a directory
 async function readJSONFiles(
-  dirPath: string
-): Promise<{ [fileName: string]: any }> {
+  dirPath: string,
+  pageNumber: number,
+  pageCount: number
+): Promise<{ totalCount: number; nftList: { [fileName: string]: any } }> {
   const jsonData: string[] = [];
-  const contentJson: any = [];
+  let jsonFiles: string[] = [];
+
   try {
     const files = await fs.promises.readdir(
       path.join(process.cwd(), "src/collections")
     );
-    console.log(process.cwd(), "src/collections");
 
+    jsonFiles = files.filter(file => path.extname(file).toLowerCase() === '.json');
+    const pageFiles = jsonFiles.slice((pageNumber - 1) * pageCount, pageNumber * pageCount);
     await Promise.all(
-      files.map(async (file) => {
+      pageFiles.map(async (file) => {
         if (path.extname(file).toLowerCase() === ".json") {
           const filePath = path.join(dirPath, file);
           const content = await fs.promises.readFile(filePath, "utf-8");
-          // const contentJson = JSON.parse(content);
-          contentJson.push(JSON.parse(content));
-          const imageData = Buffer.from(
-            contentJson.data["image.webp"]["$b"],
-            "hex"
-          );
-          const base64Image = imageData.toString("base64");
-          jsonData.push(base64Image);
+          // jsonData.push(content);
+          jsonData.push(JSON.parse(content));
         }
       })
     );
@@ -44,7 +41,8 @@ async function readJSONFiles(
       console.error("Error reading JSON files:", error);
     }
   }
-  return contentJson;
+
+  return { totalCount: jsonFiles.length, nftList: jsonData };
 }
 
 // Function to generate images from the JSON data
