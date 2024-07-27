@@ -1,7 +1,9 @@
+"use client";
 import * as React from "react";
 import Image from "next/image";
 import { Download, Stamp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 interface INFTModalProof {
   p: boolean;
   d: string;
@@ -24,7 +26,22 @@ export interface INFTModal {
   targethash: string;
 }
 
-const NFTCard = ({ data }: { data: INFTModal[] }) => {
+const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] }) => {
+  const handleMint = async (dmitem: Record<string, any>) => {
+    console.log("dmint :", dmitem);
+
+    try {
+      const response = await window.wizz.requestMint({
+        type: 'mint_dmitem',
+        dmitem,
+        atomicalId: atomicalData.atomical_id
+      });
+      console.log('Mint response:', response);
+    } catch (error) {
+      console.error('Mint error:', error);
+    }
+  };
+
   return (
     <div className="mt-4 p-4 grid new-feed-cols justify-stretch justify-items-stretch gap-4 w-full">
       {data && data.map((nftModal, index) => (
@@ -48,17 +65,23 @@ const NFTCard = ({ data }: { data: INFTModal[] }) => {
             </div>
           )}
           <div className="flex flex-row justify-center items-center w-full">
-            <Button variant={'outline'} className="h-8 w-full border-b-0 border-l-0">
-              <Download className="flex justify-center items-center h-4 w-6  " />
+            <Button
+              variant={'outline'}
+              className="h-8 w-full border-b-0 border-l-0"
+              onClick={() => handleMint(nftModal)}
+            >
+              <Download className="flex justify-center items-center h-4 w-6" />
             </Button>
-            <Button variant={'outline'} className="h-8 w-full border-b-0 border-r-0">
-              <Stamp className="flex justify-center items-center h-4 w-6  " />
+            <Button
+              variant={'outline'}
+              className="h-8 w-full border-b-0 border-r-0"
+            >
+              <Stamp className="flex justify-center items-center h-4 w-6" />
             </Button>
           </div>
         </div>
       ))}
     </div>
-
   );
 };
 

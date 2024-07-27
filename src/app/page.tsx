@@ -68,7 +68,7 @@ export default function Home() {
           : <Skeleton className="h-[90vh] w-full" />}
       </div>
 
-      <Dashboard />
+      <Dashboard atomicalData={atomicalImageData} />
     </div>
   );
 }

@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/pagination";
 import { getGeneratedImages } from "@/utils/imageGenerator";
 
-const Dashboard = () => {
+const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
   const [imageList, setImageList] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -34,6 +34,7 @@ const Dashboard = () => {
 
         setImageList(nftList);
         setTotalPages(totalPage);
+        console.log("image list :", nftList);
 
         if (totalCount > 0) {
           const halfVisiblePages = Math.floor(maxVisiblePages / 2);
@@ -72,11 +73,28 @@ const Dashboard = () => {
     const page = parseInt(event.target.value, 10);
     handlePageChange(page);
   };
+  /* 
+    const handleDownload = () => {
+      const jsonBlob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+  
+      const url = URL.createObjectURL(jsonBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `bullrun-${tokenId}.json`;
+  
+      // Step 4: Append the link to the document and trigger the download
+      document.body.appendChild(link);
+      link.click();
+  
+      // Step 5: Clean up
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }; */
 
   return (
     <>
       <div className="w-full pb-10">
-        <NFTCard data={imageList} />
+        <NFTCard atomicalData={atomicalData} data={imageList} />
         <Pagination total={totalPages}>
           <PaginationContent>
             <PaginationItem>
