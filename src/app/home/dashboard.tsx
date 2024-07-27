@@ -68,9 +68,14 @@ const Dashboard = () => {
     setCurrentPage(newPage);
   };
 
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const page = parseInt(event.target.value, 10);
+    handlePageChange(page);
+  };
+
   return (
     <>
-      <div className="w-full">
+      <div className="w-full pb-10">
         <NFTCard data={imageList} />
         <Pagination total={totalPages}>
           <PaginationContent>
@@ -97,6 +102,11 @@ const Dashboard = () => {
                 //@ts-ignore
                 disabled={currentPage === totalPages}
               />
+              <select id="page-select" value={currentPage} onChange={handleSelectChange}>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <option key={page} value={page}>{page}</option>
+                ))}
+              </select>
             </PaginationItem>
           </PaginationContent>
         </Pagination>

@@ -28,7 +28,7 @@ const NFTCard = ({ data }: { data: INFTModal[] }) => {
   return (
     <div className="mt-4 p-4 grid new-feed-cols justify-stretch justify-items-stretch gap-4 w-full">
       {data && data.map((nftModal, index) => (
-        <div key={index} className="w-full flex justify-center">
+        <div key={index} className="w-full flex flex-col items-center border-2">
           {nftModal.data["image.webp"]?.$b ? (
             <Image
               src={`data:image/webp;base64, ${Buffer.from(
@@ -47,17 +47,18 @@ const NFTCard = ({ data }: { data: INFTModal[] }) => {
               <p>Loading...</p>
             </div>
           )}
-          {/* <div className="absolute flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Button className="w-fit my-2">
-              <Download className="flex justify-center items-center h-4 w-6 text-white dark:text-gray-800" />
+          <div className="flex flex-row justify-center items-center w-full">
+            <Button variant={'outline'} className="h-8 w-full border-b-0 border-l-0">
+              <Download className="flex justify-center items-center h-4 w-6  " />
             </Button>
-            <Button className="w-fit my-2">
-              <Stamp className="flex justify-center items-center h-4 w-6 text-white dark:text-gray-800" />
+            <Button variant={'outline'} className="h-8 w-full border-b-0 border-r-0">
+              <Stamp className="flex justify-center items-center h-4 w-6  " />
             </Button>
-          </div> */}
+          </div>
         </div>
       ))}
     </div>
+
   );
 };
 

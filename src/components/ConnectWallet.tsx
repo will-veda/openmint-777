@@ -32,8 +32,12 @@ const ConnectWallet = () => {
     }
   };
 
+  const disconnectWallet = () => {
+    setConnectedAddress(null)
+  };
+
   return (
-    <ConnectButton className="" onClick={handleConnect}>
+    <ConnectButton className="" onClick={connectedAddress ? disconnectWallet : handleConnect}>
       {connectedAddress
         ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
         : "Connect"}
