@@ -13,7 +13,7 @@ Built with NextJS and TailwindCSS, this starter pack offers simplicity and effic
 First, clone the OpenMint repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/OpenMint.git
+git clone https://github.com/lamachina/openmint
 ```
     
 
