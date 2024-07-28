@@ -8,32 +8,25 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import { hexToBase64 } from "@/utils/imageUtils";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ShieldCheck } from "lucide-react";
-import { WavyBackground } from "./ui/wavy-bg";
 
-const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, additionalData: any }) => {
-    // Fallback for additionalData in case it's null or undefined
+
+const MetaData = ({ atomicalData, additionalData }: { atomicalData: any, additionalData: any }) => {
+
     const imageUrl = additionalData || '/placeholder-image.png';
     const { desc, dmint, legal, links, name } = atomicalData.state.latest
-
 
     const handleButtonClick = () => {
         const url = `https://ep.wizz.cash/proxy/blockchain.atomicals.get?params=["${atomicalData.atomical_id}"]`;
         window.open(url, '_blank', 'noopener,noreferrer');
     };
-
 
     return (
         <Card className="rounded-none mx-auto border-0 shadow-none ">
@@ -41,12 +34,11 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
             <CardHeader className="pb-2">
                 <CardTitle className="text-2xl font-bold text-center md:text-start">{name}</CardTitle>
                 <p className="text-muted-foreground text-sm text-center md:text-start">{dmint.items} items</p>
-
             </CardHeader>
+
             <CardContent>
                 <div className="flex flex-col md:flex-row w-full items-center gap-4">
                     <div className="flex flex-col md:flex-row  space-y-1.5">
-                        {/* Display image */}
                         <div className="flex justify-center md:justify-start">
                             <Dialog>
                                 <DialogTrigger>
@@ -64,15 +56,12 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                                     </Button>
                                 </DialogContent>
                             </Dialog>
-
                         </div>
                     </div>
 
                     <div className="flex flex-col gap-2">
-
                         {links &&
                             <div className="flex flex-col-reverse gap-2">
-                                {/* Display links dynamically */}
                                 {Object.keys(links).map((key) => (
                                     <a
                                         key={key}
@@ -82,12 +71,9 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                                         className="font-semibold"
                                     >
                                         <Button variant="outline" className="w-full md:w-72" >
-
                                             {key.toLocaleUpperCase()}
                                         </Button>
-
                                     </a>
-
                                 ))}
                             </div>
                         }
@@ -113,18 +99,13 @@ const AtomicalCard = ({ atomicalData, additionalData }: { atomicalData: any, add
                                         </DialogContent>
                                     </Dialog>
                                 )
-
                             }
                         </div>
-
                     </div>
-
-
                 </div>
             </CardContent>
-
         </Card>
     );
 };
 
-export default AtomicalCard;
+export default MetaData;

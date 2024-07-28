@@ -73,8 +73,11 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
 
   return (
     <div className="mt-4 p-4 grid new-feed-cols justify-center justify-items-center gap-4 w-full">
+
       {data && data.map((nftModal, index) => (
+
         <div key={index} className="w-fit flex flex-col items-center border-2">
+
           {getImageBase64(nftModal.data) ? (
             <div className="relative group w-34 h-auto rounded-lg overflow-hidden">
               <Image
@@ -88,13 +91,14 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
                 <span className="text-xl text-black dark:text-secondary text-balance font-bold">{nftModal.data.args.request_dmitem}</span>
               </div>
             </div>
-
           ) : (
             <div className="w-full h-full bg-gray-300 rounded-lg flex justify-center items-center">
               <Skeleton className="w-72 h-72" />
             </div>
           )}
+
           <div className="flex flex-row justify-center items-center w-full">
+
             <Button
               variant={'outline'}
               className="h-8 w-full border-b-0 border-l-0"
@@ -102,6 +106,7 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
             >
               <Download className="flex justify-center items-center h-4 w-6" />
             </Button>
+
             <Button
               variant={'outline'}
               className="h-8 w-full border-b-0 border-r-0"
@@ -109,6 +114,7 @@ const NFTCard = ({ atomicalData, data }: { atomicalData: any, data: INFTModal[] 
             >
               <Pickaxe className="flex justify-center items-center h-4 w-6" />
             </Button>
+
           </div>
         </div>
       ))}

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import AtomicalCard from "@/components/MetaData";
 import { fetchAtomicalsData } from "@/utils/fetchAtomicalData";
 import { fetchAdditionalData } from "@/utils/imageUtils";
-import Dashboard from "./home/dashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Atom } from "lucide-react";
+import MetaData from "@/components/MetaData";
+import CollectionGrid from "./home/CollectionGrid";
 
 
 export default function Home() {
@@ -37,14 +37,14 @@ export default function Home() {
 
         {
           atomicalImageData ?
-            <AtomicalCard atomicalData={atomicalImageData} additionalData={additionalData} />
+            <MetaData atomicalData={atomicalImageData} additionalData={additionalData} />
             : <Skeleton className="h-[90vh] w-full flex justify-center items-center" >
               <Atom className="animate-spin" />
             </Skeleton>
         }
       </div>
 
-      <Dashboard atomicalData={atomicalImageData} />
+      <CollectionGrid atomicalData={atomicalImageData} />
     </div>
   );
 }

@@ -14,7 +14,7 @@ import {
 import { getGeneratedImages } from "@/utils/imageGenerator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
+const CollectionGrid = ({ atomicalData }: { atomicalData: any }) => {
   const [imageList, setImageList] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -94,11 +94,11 @@ const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
     }; */
 
   return (
-    <div className="w-full pb-10">
+    <div className="w-full">
       {
         imageList[0] && (
 
-          <>
+          <div className="pb-10">
             <NFTCard atomicalData={atomicalData} data={imageList} />
             {/* @ts-ignore */}
             <Pagination total={totalPages}>
@@ -141,11 +141,12 @@ const Dashboard = ({ atomicalData }: { atomicalData: any }) => {
                   </SelectContent>
                 </Select>
               </PaginationContent>
-            </Pagination></>
+            </Pagination>
+          </div>
         )}
 
     </div>
   );
 };
 
-export default Dashboard;
+export default CollectionGrid;

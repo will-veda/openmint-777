@@ -1,5 +1,3 @@
-// utils/imageUtils.ts
-
 // Converts a hexadecimal string to a Base64 data URL
 export const hexToBase64 = (hex: string): string => {
     // Ensure hex string is properly formatted

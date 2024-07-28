@@ -8,12 +8,12 @@ async function getGeneratedImages(pageNumber: number, pageCount: number): Promis
   return readJSONFiles(dirPath, pageNumber, pageCount);
 }
 
-// Function to read all JSON files in a directory
 async function readJSONFiles(
   dirPath: string,
   pageNumber: number,
   pageCount: number
 ): Promise<{ totalCount: number; nftList: { [fileName: string]: any } }> {
+
   const jsonData: string[] = [];
   let jsonFiles: string[] = [];
 
@@ -29,7 +29,6 @@ async function readJSONFiles(
         if (path.extname(file).toLowerCase() === ".json") {
           const filePath = path.join(dirPath, file);
           const content = await fs.promises.readFile(filePath, "utf-8");
-          // jsonData.push(content);
           jsonData.push(JSON.parse(content));
         }
       })
@@ -45,14 +44,5 @@ async function readJSONFiles(
   return { totalCount: jsonFiles.length, nftList: jsonData };
 }
 
-// Function to generate images from the JSON data
-function generateImages(jsonData: { [fileName: string]: any }) {
-  Object.entries(jsonData).forEach(([fileName, data]) => {
-    const imageData = Buffer.from(data.data["image.webp"]["$b"], "hex");
-    const imagePath = path.join(path.dirname(fileName), "image.webp");
-    fs.writeFileSync(imagePath, imageData);
-    console.log(`Image generated: ${imagePath}`);
-  });
-}
 
-export { getGeneratedImages, readJSONFiles, generateImages };
+export { getGeneratedImages, readJSONFiles };
