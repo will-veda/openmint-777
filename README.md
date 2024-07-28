@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# OpenMint
 
-First, run the development server:
+OpenMint is an open-source and free-to-use project that allows NFT creators on Bitcoin to host their own decentralized mint websites.
+Participants can mint NFTs directly through the creator's platform without the need for third-party intermediaries such as launchpads or marketplaces.
+
+Built with NextJS and TailwindCSS, this starter pack offers simplicity and efficiency for creators.
+
+### 1. Clone the Repository
+
+First, clone the OpenMint repository to your local machine:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/OpenMint.git
+```
+    
+
+### 2. Add Your Collection
+
+Open the cloned project. Navigate to the "/collection" folder in the "/src" repository.
+```bash
+cd .\src\collections\
+```
+#### -> Add your NFT item.json files.
+
+Push the latest change in your own repository.
+```bash
+git add .
+git commit -m "Add my NFT collection"
+git push origin main
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Deploy on Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Go to [Vercel](https://vercel.com) and import your project.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Deploy your project and set an environment variable:
 
-## Learn More
+`NEXT_PUBLIC_ATOMICALS_ID_CONTAINER` = 
+`your collection container atomicals id`
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## OPEN YOUR MINT NOW
 
-## Deploy on Vercel
+![App Screenshot](/public/6.png)
+![App Screenshot](/public/7.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Support
+
+If you have any questions or need support, [ask here](https://t.me/AtomicalsCommunity).
