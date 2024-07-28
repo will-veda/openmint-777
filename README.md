@@ -6,6 +6,8 @@ Participants can mint NFTs directly through the creator's platform without the n
 
 Built with NextJS and TailwindCSS, this starter pack offers simplicity and efficiency for creators.
 
+![App Screenshot](/public/1.png)
+
 ### 1. Clone the Repository
 
 First, clone the OpenMint repository to your local machine:
@@ -44,8 +46,6 @@ Deploy your project and set an environment variable:
 ## OPEN YOUR MINT NOW
 
 ![App Screenshot](/public/6.png)
-![App Screenshot](/public/7.png)
-
 
 ## Support
 
