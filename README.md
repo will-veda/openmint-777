@@ -41,12 +41,6 @@ Deploy your project and set an environment variable:
 `NEXT_PUBLIC_ATOMICALS_ID_CONTAINER` = 
 `your collection container atomicals id`
 
-
-
-## OPEN YOUR MINT NOW
-
-![App Screenshot](/public/6.png)
-
-## Support
+# OPEN YOUR MINT NOW
 
 If you have any questions or need support, [ask here](https://t.me/AtomicalsCommunity).

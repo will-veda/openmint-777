@@ -4,12 +4,14 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "OPEN MINT",
   description: "host decentralised mint on Bitcoin",
+  icons: "/1.ico",
 };
 
 export default function RootLayout({
@@ -29,6 +31,7 @@ export default function RootLayout({
           <Header />
           <section className="flex-1">{children}</section>
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

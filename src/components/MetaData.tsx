@@ -44,8 +44,8 @@ const MetaData = ({ atomicalData, additionalData }: { atomicalData: any, additio
                                 <DialogTrigger>
                                     <Image className="w-44 md:w-72 rounded-xl hover:brightness-105 border-4 border-popover-foreground" src={imageUrl} width={512} height={512} alt="Atomical Image" />
                                 </DialogTrigger>
-                                <DialogContent className="max-w-[90%] md:max-w-fit rounded-xl">
-                                    <DialogHeader>
+                                <DialogContent className="max-w-[90%] max-h-[70%] overflow-auto md:max-w-fit rounded-xl">
+                                    <DialogHeader className="text-start">
                                         <DialogTitle>{name}</DialogTitle>
                                         <DialogDescription>
                                             {desc}
@@ -89,8 +89,8 @@ const MetaData = ({ atomicalData, additionalData }: { atomicalData: any, additio
                                         <DialogTrigger className="hover:underline">
                                             License & Terms
                                         </DialogTrigger>
-                                        <DialogContent className="max-w-[90%] md:max-w-fit rounded-xl">
-                                            <DialogHeader>
+                                        <DialogContent className="max-w-[90%] max-h-[70%] overflow-auto  md:max-w-fit rounded-xl">
+                                            <DialogHeader className="text-start">
                                                 <DialogTitle> {legal.license}</DialogTitle>
                                                 <DialogDescription>
                                                     {legal.terms}
